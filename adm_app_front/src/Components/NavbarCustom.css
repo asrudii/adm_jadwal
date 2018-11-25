@@ -1,0 +1,30 @@
+nav.navbar, .navbar-default {
+    background-color: #c5d5cb !important;
+}
+
+.navbar-default {
+    background-image: none;
+    border: none;
+    border-radius: 0;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: white;
+    font-weight: 600;
+}
+.navbar-default .navbar-nav > li > a:hover {
+    font-weight: 600;
+    color: #fae596;
+}
+.navbar-default .navbar-nav > li > a:focus {
+    color: #fae596;
+    font-weight: 600;
+}
+
+
+.navbar-default .navbar-brand {
+    color: white;
+}
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus  {
+    color: white;
+}

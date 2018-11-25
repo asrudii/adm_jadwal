@@ -1,0 +1,19 @@
+.listnama {
+    font-family: arial;
+}
+.listnama h3 {
+    font-size: 15px;
+    color: #5e5e5e;
+    font-weight: bold;
+    margin: 1;
+    margin-right: 10px;
+    
+}
+.jadwal-desk {
+    border-left: solid 2px rgb(199, 199, 199);
+    padding-left: 10px;
+}
+.jadwal-desk p span {
+    margin-right: 10px;
+    border-bottom: 1px solid rgb(199, 199, 199);
+}
