@@ -25,7 +25,7 @@ class Home extends Component {
                 </Jumbotron>
                 <Row className="show-grid text-align-center">
                     <Col xs={12} md={8}>
-                        <Link to="/ajukan">
+                        <Link to="/jadwal">
                             <Button className="jadwal">
                                 <Glyphicon glyph="glyphicon glyphicon-calendar" />
                                 <p>Lihat Jadwal</p>
