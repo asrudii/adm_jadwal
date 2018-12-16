@@ -12,6 +12,8 @@ class PostPasien extends Component {
     };
   }
 
+
+ 
   handleRmChange = event => {
       this.setState({ rm: event.target.value });
   };

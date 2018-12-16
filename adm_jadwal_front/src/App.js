@@ -4,6 +4,9 @@ import Home from './Components/Home';
 import Jadwal from './Components/Jadwal';
 import Ajukan from './Components/Ajukan';
 import Statistik from './Components/Statistik';
+import Register from './Components/Register';
+import Login from './Components/Login';
+import Profil from './Components/Profil';
 import NavbarCustom from './Components/NavbarCustom';
 import GetPasien from './Components/GetPasien';
 import PostPasien from './Components/PostPasien';
@@ -23,6 +26,9 @@ class App extends Component {
           <Route exact path='/jadwal' component={Jadwal} />
           <Route exact path='/ajukan' component={Ajukan} />
           <Route exact path='/statistik' component={Statistik} />
+          <Route exact path='/register' component={Register} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/profil' component={Profil} />
           <Route path='/edit' component={PutPasien} />
           <Route path='/hapus' component={DeletePasien} />
           <Route path='/submit' component={PostPasien} />

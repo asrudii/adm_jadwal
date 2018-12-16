@@ -16,9 +16,23 @@ router.get('/pasien/:id', function(req, res){
 
 // simpan data
 router.post('/pasien', function(req, res){
-    const {rm, nama, gambar} = req.body;
+    // const {rm, nama, usia, diagnosa, penunjang, pasiendari, telp, ket} = req.body;
+    const tglSekarang = new Date()
+    const Status = 'B'
+    const dataPasien = {
+        rm : req.body.rm,
+        nama : req.body.nama,
+        usia : req.body.usia,
+        diagnosa : req.body.diagnosa,
+        penunjang : req.body.penunjang,
+        pasiendari : req.body.pasiendari,
+        telp : req.body.telp,
+        ket : req.body.ket,
+        tanggal : tglSekarang,
+        status : Status
+    }
     // save data
-    Pasien.create(req.body)
+    Pasien.create(dataPasien)
         .then(function(result){
             res.send(result);
         });

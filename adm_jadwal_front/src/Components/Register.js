@@ -3,47 +3,46 @@ import axios from 'axios';
 import { Form, FormControl, FormGroup, ControlLabel, HelpBlock, Button, Grid, Row, Col } from 'react-bootstrap';
 import './LoginRegister.css'
 
-class Login extends Component {
+class Register extends Component {
   constructor() {
     super();
   
     this.state = {
+      username: '',
+      nama: '',
       email: '',
-      password: '',
-      formatemail: 'format email nama@domain.com',
-      logingagal: ''
-    }
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+      password: ''
+    };
   }
 
   handleChange = event => {
       this.setState({ [event.target.name]: event.target.value });
   };
   
-
   handleSubmit = event => {
       event.preventDefault();     
       
-      // const login = () => {
-      //   return
-         axios.post('http://localhost:4000/api/login', {email: this.state.email, password: this.state.password})
-         .then(res => {
-            if(res.data === 'user tidak ditemukan'){
-              this.setState({
-                logingagal : 'email atau password salah'
-              })
-            }else {
-              localStorage.setItem('usertoken', res.data)
-              return res.data
-            }
-          })
-          .then(d => {
-            if(localStorage.usertoken != undefined) {           
-              this.props.history.push('/profil')
-            }
-          })
-          .catch(err => console.log(err))
+       axios.post('http://localhost:4000/api/register', {
+           username: this.state.username, 
+           nama: this.state.nama,
+           email: this.state.email,
+           password: this.state.password
+        })
+       .then(res => {
+           console.log('registered');
+        })
+        .then( d => {
+            this.props.history.push('/login')
+        })
+        .catch(err => console.log(err))
+        
+        alert('Anda berhasil register');
+        this.setState({
+            username: '',
+            nama: '',
+            email: '',
+            password: ''
+        });
   }
 
   validasiemail(e) {
@@ -59,14 +58,23 @@ class Login extends Component {
   }
 
   render() {
-
     return (
-      <Grid>
+        <Grid>
         <Row className="show-grid">
           <Form onSubmit={this.handleSubmit}>
               <Col sm={12} md={4} mdOffset={4}> 
-                  <h2 className="loginRegisterLabel"> LOGIN </h2>  
-                  <p style={{color: 'red', textAlign: 'center'}}>{this.state.logingagal}</p>                     
+                  <h2 className="loginRegisterLabel"> REGISTER </h2>                       
+                  <FormGroup controlId="formBasicText">
+                      <ControlLabel> username</ControlLabel>
+                      <FormControl type="text" placeholder="Masukkan username" value={this.state.username} name="username"  onChange={this.handleChange}/>
+                      <FormControl.Feedback />
+                      <HelpBlock>username wajib diisi</HelpBlock>
+                  </FormGroup>
+                  <FormGroup controlId="formBasicText">
+                      <ControlLabel> nama </ControlLabel>
+                      <FormControl type="text" placeholder="Masukkan nama" value={this.state.nama} name="nama"  onChange={this.handleChange}/>
+                      <FormControl.Feedback />
+                  </FormGroup>
                   <FormGroup controlId="formBasicText" validationState={this.validasiemail()}>
                       <ControlLabel> email</ControlLabel>
                       <FormControl type="text" placeholder="Masukkan email" value={this.state.email} name="email"  onChange={this.handleChange}/>
@@ -78,7 +86,7 @@ class Login extends Component {
                       <FormControl type="password" placeholder="Masukkan password" value={this.state.password} name="password"  onChange={this.handleChange}/>
                       <HelpBlock>masukkan password anda</HelpBlock>
                   </FormGroup>
-                  <Button bsStyle="success" bsSize="large" type="submit" block>Login</Button>
+                  <Button bsStyle="success" bsSize="large" type="submit" block>Register</Button>
               </Col>
           </Form>
         </Row>
@@ -87,4 +95,4 @@ class Login extends Component {
   }  
 }
 
-export default Login;
+export default Register;

@@ -79,3 +79,9 @@
     background-color: #e7d2b7;
     color: #e4cdb0;
 }
+
+@media screen and (max-width: 991px) {
+    .statistik {
+        margin-top: 30px;
+    }
+}

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const PasienSchema = new Schema({
+const Jadwal = new Schema({
     rm : Number,
     nama : String,
     usia : Number,
@@ -11,9 +11,8 @@ const PasienSchema = new Schema({
     telp : Number, 
     Ket : String,
     tanggal : Date,
-    status : String
 });
 
-const Pasien = mongoose.model('Pasien', PasienSchema);
+const Jadwal = mongoose.model('Jadwal', Jadwal);
 
-module.exports = Pasien;
+module.exports = Jadwal;

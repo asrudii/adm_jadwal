@@ -15,10 +15,12 @@ nav.navbar, .navbar-default {
 .navbar-default .navbar-nav > li > a:hover {
     font-weight: 600;
     color: #fae596;
+    outline: none;
 }
 .navbar-default .navbar-nav > li > a:focus {
     color: #fae596;
     font-weight: 600;
+    outline: none;
 }
 
 
@@ -27,4 +29,16 @@ nav.navbar, .navbar-default {
 }
 .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus  {
     color: white;
+    outline: none;
+}
+
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover, a:focus {
+    color: #fae596;
+    text-decoration: none;
 }

@@ -31,7 +31,7 @@ export default class Test extends Component {
             {this.state.value}
           </button>
           <p>{this.state.date.toLocaleTimeString()}</p>
-          <Link to="/"><a href='#'>Home</a></Link>
+          <Link to="/"><a href='/'>Home</a></Link>
         </div>
       );
     }

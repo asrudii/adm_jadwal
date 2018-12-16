@@ -3,9 +3,7 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
-const bodyParser = require('body-parser');
 
-router.use(bodyParser.json());
 
 router.get('/user', function(req, res){
     User.find({}).then(function(result){
@@ -21,8 +19,9 @@ router.post('/register', function(req, res) {
         nama : req.body.nama,
         email : req.body.email,
         password : req.body.password,
-        created : hariIni
+        created : hariIni,
     }
+    
     User.findOne({
         email : req.body.email
     })
@@ -44,61 +43,80 @@ router.post('/register', function(req, res) {
     })
 })
 
-// Login Verifikasi 
-router.post('/user', verifyToken, function(req, res){
-    jwt.verify(req.token, 'secret', (err, authData) => {
-        if(err) {
-            res.sendStatus(403);
+// Butuh akses token
+router.get('/user', (req, res) => {
+    var decoded = jwt.verify(req.header['authorization'], 'asepGanteng')
+    
+    User.findOne({
+        _id: decoded._id
+    })
+    .then(user => {
+        if (user) {
+            res.json(user)
         }else {
-            res.json({
-                message: 'Post created....',
-                authData
-            })
+            res.send("user tidak ditemukan")
         }
-    });
+    })
+    .catch(err => {
+        res.send('error: ' + err)
+    })
 });
+
 // Login Token
-router.post('/login', function(req, res){
-    // ambil data user db
-    // const userdata = () => { User.find({}).then(function(result){
-    //         res.send(result)
-    //     });
-    // }  
-    const user = {
-        id: 1,
-        username: 'rudi',
-        email: 'asep@gmail.com'
-    } 
-    // membuat token
-    jwt.sign({user}, 'secret', (err, token) => {
-        res.json({
-            token
-        });
-    });
+router.post('/login', (req, res) => {
+    User.findOne({
+        email: req.body.email
+    })
+    .then(user => {
+        if(user) {
+            if(bcrypt.compareSync(req.body.password, user.password)) {
+                const payload = {
+                    _id: user._id,
+                    username: user.username,
+                    nama: user.nama,
+                    email: user.email,
+                    level: user.level
+                }
+                let token = jwt.sign(payload, 'asepGanteng', {
+                    expiresIn: 1440
+                })
+                res.send(token)
+            }else{
+                res.send("user tidak ditemukan")
+            }
+        }else {
+            res.send("user tidak ditemukan")
+        }
+    })
+    .catch(err => {
+        res.send('error: ' + err)
+    })
 });
-// Fromat Token
 
-// Authorization : bearer <akses_token>
 
-// fungsi verfikasi
-function verifyToken(req, res, next) {
-    // Ambil auth header value
-    const bearerHeader = req.header['authorization'];
-    // check jika bearer undefined
-    if(typeof bearerHeader !== 'undefined') {
-        // dipecah saat di jalan
-        const bearer = bearerHeader.split(' ');
-        // ambil token array
-        const bearerToken = bearer[1];
-        // set Token
-        req.token = bearerToken;
-        // next middleware
-        next();
-    } else {
-        // forbidden
-        res.sendStatus(403);
-    }
-}
+// // Fromat Token
+
+// // Authorization : bearer <akses_token>
+
+// // fungsi verfikasi
+// function verifyToken(req, res, next) {
+//     // Ambil auth header value
+//     const bearerHeader = req.header['authorization'];
+//     // check jika bearer undefined
+//     if(typeof bearerHeader !== 'undefined') {
+//         // dipecah saat di jalan
+//         const bearer = bearerHeader.split(' ');
+//         // ambil token array
+//         const bearerToken = bearer[1];
+//         // set Token
+//         req.token = bearerToken;
+//         // next middleware
+//         next();
+//     } else {
+//         // forbidden
+//         res.sendStatus(403);
+//     }
+// }
 
 
 router.put('/user/:id', function(req, res){

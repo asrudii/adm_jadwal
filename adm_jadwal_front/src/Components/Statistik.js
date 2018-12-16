@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
-import { Bar, Line, Pie } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import { Grid, Row, Col } from 'react-bootstrap';
+import jwt_decode from 'jwt-decode';
+import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
 class Statistik extends Component {
     constructor(props) {
         super(props);
         this.state = {
             statistikData : {
-                labels : [ 'Dinas', 'BPJS Mandiri', 'Jamkesmas', 'Polri', 'Kontraktor'],
+                labels : [ 'Jml Pasien', 'BPJS Mandiri', 'Jamkesmas', 'Polri', 'Kontraktor'],
                 datasets : [{
                     label : 'population',
                     data : [617594, 381045, 653060, 406519, 505162],
@@ -28,11 +31,68 @@ class Statistik extends Component {
                     ],
                     borderWidth: 1
                 }]                
-            }
+            },
+            pasien: '',         
+            username: '',
+            nama: '',
+            email: ''
+            
         }
     }
+   
+
+    componentDidMount () {
+        
+        if(!localStorage.usertoken) {
+            alert('kamu harus login dulu')
+            this.props.history.push('/login')
+        } else {
+            const token = localStorage.usertoken
+            const decode = jwt_decode(token)
+            // const updatedata = Object.assign({}, this.state);
+            this.setState({
+                username: decode.username,
+                nama: decode.nama,
+                email: decode.email
+            })
+            
+        }
+        
+        this.getPasien(); 
+        
+        // this.setState({
+        //     statistikData: {
+        //         ...this.state.statistikData,
+        //         this.state.statistikData.datasets[0].data = [64, 38, 65, 40, 52]
+                
+        //     },
+        //     pasien: ['rudi', 'asep', 'lukman']
+        // })
+              
+    }
+
+    getPasien = _ => {
+        axios.get('http://localhost:4000/api/pasien')
+            .then(result => {
+                this.setState({ 
+                pasien : result.data,
+            })
+                let jml_pasien = result.data.length;
+                this.state.statistikData.datasets[0].data = [jml_pasien, 18, 20, 18, 19]
+                this.forceUpdate();
+        })
+            .catch(err => console.log(err))
+    }
+
     
+
+    // bindData = d => {
+    //     this.setState({statistikData.data.datasets[0].data[7] = 60;)}
+    //     update();
+    // }
+
     render() {
+        // console.log(this.state.statistikData.datasets[0].data)   
         return (
             <Grid>
                 <Row>
@@ -59,4 +119,4 @@ class Statistik extends Component {
     }
 }
 
-export default Statistik;
+export default withRouter(Statistik);

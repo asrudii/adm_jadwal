@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Grid, Jumbotron, Row, Col, Glyphicon, Image, Button } from 'react-bootstrap';
+import { Grid, Jumbotron, Row, Col, Glyphicon, Button } from 'react-bootstrap';
 import './Home.css';
 
 class Home extends Component {
     render() {
+        console.log( localStorage.getItem('refreshToken'))
         return (
             <Grid>
                 <Jumbotron className="Jumboo">
@@ -13,7 +14,7 @@ class Home extends Component {
                             <h2>Jadwal Pasien Kateterisasi Jantung Rumah Sakit Dustira</h2>
                             <p>Ajukan, Verifikasi, Lihat jadwal</p>
                         </Col>
-                        <Col xs={3} md={3}>
+                        <Col xs={12} md={3}>
                             <Link to="/ajukan">
                                 <Button className="ajukan">
                                     <Glyphicon glyph="glyphicon glyphicon-upload" />
@@ -32,7 +33,7 @@ class Home extends Component {
                             </Button>
                         </Link>
                     </Col>
-                    <Col xs={6} md={4}>
+                    <Col xs={12} md={4}>
                         <Link to="/statistik">
                             <Button className="statistik">
                                 <Glyphicon glyph="glyphicon glyphicon-stats" />
