@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Form, FormControl, FormGroup, ControlLabel, HelpBlock, Button, Grid, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
-import jwt_decode from 'jwt-decode';
 
 class Ajukan extends Component {
     constructor() {
@@ -92,13 +91,6 @@ class Ajukan extends Component {
             alert('kamu harus login dulu')
             this.props.history.push('/login')
         } else {
-            const token = localStorage.usertoken
-            const decode = jwt_decode(token)
-            // const updatedata = Object.assign({}, this.state);
-            this.setState({
-                username: decode.username,
-                email: decode.email
-            })
         }
     }
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Home from './Components/Home';
 import Jadwal from './Components/Jadwal';
+import ListVerifikasi from './Components/ListVerifikasi';
 import Ajukan from './Components/Ajukan';
 import Statistik from './Components/Statistik';
 import Register from './Components/Register';
@@ -24,6 +25,7 @@ class App extends Component {
           <NavbarCustom />
           <Route exact path='/' component={Home} />
           <Route exact path='/jadwal' component={Jadwal} />
+          <Route exact path='/verifikasi' component={ListVerifikasi} />
           <Route exact path='/ajukan' component={Ajukan} />
           <Route exact path='/statistik' component={Statistik} />
           <Route exact path='/register' component={Register} />

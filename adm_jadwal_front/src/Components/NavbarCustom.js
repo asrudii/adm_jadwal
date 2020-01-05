@@ -51,7 +51,7 @@ class NavbarCustom extends Component {
         )
 
         return (
-            <Navbar default collapsOnSelect>
+            <Navbar default collapsOnSelect bg="dark" variant="dark">
                 <Navbar.Header>
                     <Navbar.Brand>
                         <Link to="/">Cathlab Schedule</Link>

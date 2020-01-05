@@ -1,0 +1,16 @@
+.list-componen {
+    position: fixed;
+    left: 100%;
+    transition: .50s;
+    z-index: 2;
+}
+.active {
+    left: 45%;
+}
+
+.tombol, .tombol:hover {
+    color : #404040;
+    font-size: 15px;
+    margin-bottom: 0;
+    cursor: pointer;
+}

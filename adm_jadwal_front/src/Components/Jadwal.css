@@ -1,3 +1,6 @@
+.jadwal-body{
+    overflow: hidden;
+}
 .listnama {
     font-family: arial;
 }
@@ -6,6 +9,7 @@
     color: #5e5e5e;
     font-weight: bold;
     margin: 1;
+    margin-top: 0;
     margin-right: 10px;
     
 }
@@ -13,7 +17,7 @@
     border-left: solid 2px rgb(199, 199, 199);
     padding-left: 10px;
 }
-.jadwal-desk p span {
+.jadwal-desk span {
     margin-right: 10px;
     border-bottom: 1px solid rgb(199, 199, 199);
 }

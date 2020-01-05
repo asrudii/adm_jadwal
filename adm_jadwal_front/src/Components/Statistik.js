@@ -47,14 +47,6 @@ class Statistik extends Component {
             alert('kamu harus login dulu')
             this.props.history.push('/login')
         } else {
-            const token = localStorage.usertoken
-            const decode = jwt_decode(token)
-            // const updatedata = Object.assign({}, this.state);
-            this.setState({
-                username: decode.username,
-                nama: decode.nama,
-                email: decode.email
-            })
             
         }
         

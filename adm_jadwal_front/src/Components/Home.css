@@ -1,5 +1,5 @@
 .Jumboo {
-    background-color: #c9d8c5;
+    background-color: #95c18a;
     color: white;
 }
 .glyphicon-calendar {
@@ -24,7 +24,7 @@
     width: 100%;
     background-image: none;
     border: 5px solid white;
-    background-color: #c9d8c5;
+    background-color: #95c18a;
     color: white;
     font-weight: 600;
     padding-bottom: 10px;
@@ -32,11 +32,11 @@
 
 .ajukan:hover, .ajukan:focus {
     color: white;
-    background-color: #becfba;    
+    background-color: #8cba80;    
     border: 5px solid white;
 }
 .ajukan:visited {
-    background-color: #becfba;    
+    background-color: #8cba80;    
     border: 5px solid white;
     color: white;
 }
@@ -67,16 +67,16 @@
     width: 100%;
     background-image: none;
     border: none;
-    background-color: #e7d2b7;
+    background-color: #e2bc8c;
     color: white;
     padding-bottom: 20px;
 }
 .jadwal:hover, .jadwal:focus {
     color: white;
-    background-color: #e4cdb0;
+    background-color: #dcb27b;
 }
 .jadwal:visited {
-    background-color: #e7d2b7;
+    background-color: #dcb27b;
     color: #e4cdb0;
 }
 
